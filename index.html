@@ -3,170 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Jocelyn ❤️</title>
+    <title>Ugh, Fine. - Jocelyn</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        :root {
-            --pink: #ffafbd;
-            --dark-pink: #ff4b2b;
-            --soft-white: #fff0f3;
-        }
-
         body {
-            margin: 0;
-            padding: 0;
+            background-color: #008080; /* Classic Windows Teal */
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--pink), #ffc3a0);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-            text-align: center;
+            height: 100vh;
+            margin: 0;
         }
 
-        .container {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 400px;
-            width: 90%;
-            position: relative;
-            z-index: 10;
+        .window {
+            background: #c0c0c0;
+            border: 2px solid #fff;
+            border-right: 2px solid #808080;
+            border-bottom: 2px solid #808080;
+            padding: 2px;
+            width: 350px;
+            box-shadow: 5px 5px 0px black;
+        }
+
+        .title-bar {
+            background: linear-gradient(90deg, #000080, #1084d0);
+            color: white;
+            padding: 3px 5px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
         }
 
         .hidden { display: none; }
 
-        h1 { color: var(--dark-pink); margin-bottom: 1rem; }
-        p { color: #555; line-height: 1.6; font-size: 1.1rem; }
-
-        .btn {
-            background: var(--dark-pink);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-size: 1rem;
+        button {
+            padding: 5px 15px;
+            background: #c0c0c0;
+            border: 2px solid #fff;
+            border-right: 2px solid #000;
+            border-bottom: 2px solid #000;
             cursor: pointer;
-            transition: transform 0.2s;
-            margin: 10px;
+            font-family: "Comic Sans MS";
         }
 
-        .btn:hover { transform: scale(1.1); }
+        button:active {
+            border: 2px solid #000;
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+        }
 
         #no-btn {
             position: absolute;
-            background: #999;
+            z-index: 999;
         }
 
-        .heart-icon {
-            font-size: 5rem;
-            cursor: pointer;
-            animation: heartbeat 1.2s infinite;
-        }
-
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        .floating-hearts {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 1;
+        marquee {
+            background: yellow;
+            border: 1px solid black;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <div class="floating-hearts" id="bg-hearts"></div>
-
-    <div class="container" id="main-card">
-        <div id="step1">
-            <div class="heart-icon" onclick="nextStep(2)">💌</div>
-            <p>Hey Jocelyn, Logan sent you a message...</p>
-            <p><small>(Click to open)</small></p>
+    <div class="window" id="box">
+        <div class="title-bar">
+            <span>IMPORTANT_MESSAGE.exe</span>
+            <span style="background: #c0c0c0; color: black; padding: 0 3px; border: 1px solid black;">X</span>
         </div>
-
-        <div id="step2" class="hidden">
-            <h1>First off...</h1>
-            <p>I just wanted to say that every day with you is my favorite day.</p>
-            <button class="btn" onclick="nextStep(3)">Keep reading →</button>
-        </div>
-
-        <div id="step3" class="hidden">
-            <h1>And also...</h1>
-            <p>You make me laugh harder than anyone else, and you're pretty much the best thing that's happened to me.</p>
-            <button class="btn" onclick="nextStep(4)">One more thing...</button>
-        </div>
-
-        <div id="step4" class="hidden">
-            <h1>Jocelyn,</h1>
-            <p>Will you be my Valentine?</p>
-            <div style="height: 100px; position: relative;">
-                <button class="btn" id="yes-btn" onclick="celebrate()">YES!</button>
-                <button class="btn" id="no-btn" onmouseover="moveNo()">No</button>
+        
+        <div class="content">
+            <div id="step1">
+                <p>Jocelyn, you're being summoned.</p>
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJid3BqZzB4bm96ZzZ6ZzZ6ZzZ6ZzZ6ZzZ6ZzZ6ZzZ6ZzZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKMGpxP5m8b51Yc/giphy.gif" width="100">
+                <br><br>
+                <button onclick="next(2)">What now?</button>
             </div>
-        </div>
 
-        <div id="step5" class="hidden">
-            <h1>YAY! ❤️</h1>
-            <p>I knew you'd say yes (mostly because I broke the 'No' button).</p>
-            <p>I love you, Jocelyn!</p>
-            <p>- Logan</p>
+            <div id="step2" class="hidden">
+                <p>Listen, flowers are expensive and I don't wanna go to walmart again.</p>
+                <button onclick="next(3)">And...?</button>
+            </div>
+
+            <div id="step3" class="hidden">
+                <p>So I made this website instead. It cost $0. You're welcome.</p>
+                <button onclick="next(4)">Get to the point Logan</button>
+            </div>
+
+            <div id="step4" class="hidden">
+                <marquee>VALENTINE'S DAY SPECIAL</marquee>
+                <p>Will you be my Valentine or do I have to ask the cat?</p>
+                <div style="height: 80px; margin-top: 20px;">
+                    <button onclick="win()">YES</button>
+                    <button id="no-btn" onmouseover="dodge()">NO</button>
+                </div>
+            </div>
+
+            <div id="step5" class="hidden">
+                <h2 style="color: red;">CONGRATS!</h2>
+                <p>You chose the only button that works.</p>
+                <p>Also just tell me if u actually want $10 flowers from walmart bc i will totally get them for you but you have never really expressed interest in flowers but i wanted to do something cute and nice for u bc i lub u :) - Logan</p>
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJid3BqZzB4bm96ZzZ6ZzZ6ZzZ6ZzZ6ZzZ6ZzZ6ZzZ6ZzZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/l0MYt5jPR6QX5pnqM/giphy.gif" width="150">
+            </div>
         </div>
     </div>
 
     <script>
-        function nextStep(stepNum) {
-            // Hide all steps
-            for(let i=1; i<=5; i++) {
-                document.getElementById('step' + i).classList.add('hidden');
-            }
-            // Show current step
-            document.getElementById('step' + stepNum).classList.remove('hidden');
+        let step = 1;
+        function next(s) {
+            document.getElementById('step' + step).classList.add('hidden');
+            document.getElementById('step' + s).classList.remove('hidden');
+            step = s;
         }
 
-        function moveNo() {
-            const btn = document.getElementById('no-btn');
-            // Move button to a random position within the card
-            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+        function dodge() {
+            const b = document.getElementById('no-btn');
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            b.style.left = x + 'px';
+            b.style.top = y + 'px';
             
-            btn.style.position = 'fixed';
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
+            // Randomly change text to be snarky
+            const phrases = ["Nice try", "Try again", "Nope", "Wrong choice", "Error 404"];
+            b.innerText = phrases[Math.floor(Math.random() * phrases.length)];
         }
 
-        function celebrate() {
-            nextStep(5);
-            // Confetti Blast!
-            var duration = 5 * 1000;
-            var end = Date.now() + duration;
-
-            (function frame() {
-              confetti({
-                particleCount: 3,
-                angle: 60,
-                spread: 55,
-                origin: { x: 0 },
-                colors: ['#ff4b2b', '#ffafbd']
-              });
-              confetti({
-                particleCount: 3,
-                angle: 120,
-                spread: 55,
-                origin: { x: 1 },
-                colors: ['#ff4b2b', '#ffafbd']
-              });
-
-              if (Date.now() < end) {
-                requestAnimationFrame(frame);
-              }
-            }());
+        function win() {
+            next(5);
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff0000', '#ffffff', '#0000ff'] // Chaotic red white and blue because why not
+            });
         }
     </script>
 </body>
